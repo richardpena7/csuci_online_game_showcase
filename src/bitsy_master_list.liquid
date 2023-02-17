@@ -1,0 +1,47 @@
+---
+{
+    "pagination": {
+        "data": "bitsy_master_list",
+        "size": 3,
+        "alias": "bitsy_games"
+    }
+}
+---
+
+<div>
+  {% for bitsy_games in bitsy_master_list %}
+    <div>
+      <img
+        src="{{ video.thumbnail }}"
+        alt="{{ video.title }}"
+        loading="lazy" />
+      <div>
+        <a
+          class="text-black"
+          href="{{ video.url }}"
+          target="_blank"
+          rel="noreferrer noopener">{{ video.title }}</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div>
+  <ul>
+    <li>
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">Prev</a>
+      {% endif %}
+    </li>
+    {%- for pageEntry in pagination.pages %}
+      <li>
+        <a href="{{ pagination.hrefs[ loop.index0 ] }}">{{ loop.index }}</a>
+      </li>
+    {%- endfor %}
+    <li>
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Next</a>
+      {% endif %}
+    </li>
+  </ul>
+</div>
